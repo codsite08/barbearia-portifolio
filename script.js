@@ -11,7 +11,6 @@ window.addEventListener('scroll', function() {
 });
 
 /* ================= SCROLL SUAVE PARA LINKS ================= */
-// Adiciona rolagem suave extra para os botões novos que ancoram para baixo
 document.querySelectorAll('.scroll-link').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -59,7 +58,6 @@ let horarioSelecionado = '';
 function abrirModal() {
     if(modal) modal.style.display = 'block';
     
-    // Autocompletar com dados salvos no navegador (se existirem)
     if(localStorage.getItem('clienteNome')) {
         document.getElementById('nome').value = localStorage.getItem('clienteNome');
     }
@@ -108,23 +106,19 @@ function confirmarAgendamento() {
         return;
     }
 
-    // Salva os dados do cliente para a próxima vez
     localStorage.setItem('clienteNome', nome);
     localStorage.setItem('clienteTelefone', telefone);
 
-    // Formata a data para padrão brasileiro
     const dataFormatada = data.split('-').reverse().join('/');
     
-    // Monta a mensagem para o WhatsApp
     const mensagem = `Olá, gostaria de agendar um horário!\n\n*Nome:* ${nome}\n*Telefone:* ${telefone}\n*Serviço:* ${servico}\n*Data:* ${dataFormatada}\n*Horário:* ${horarioSelecionado}`;
     
     const mensagemCodificada = encodeURIComponent(mensagem);
-    const numeroWhatsApp = '5581991994219'; // Seu número
+    const numeroWhatsApp = '5581991994219'; 
     const linkWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${mensagemCodificada}`;
 
     mostrarToast('✅ Tudo certo! Abrindo o WhatsApp...', 'sucesso');
     
-    // Abre o WhatsApp após um pequeno delay
     setTimeout(() => {
         window.open(linkWhatsApp, '_blank');
         fecharModal();
