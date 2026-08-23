@@ -51,12 +51,15 @@ function mostrarToast(mensagem, tipo = 'sucesso') {
     }, 3000);
 }
 
-/* ================= MODAL ================= */
+/* ================= MODAL DE AGENDAMENTO (FIX IPHONE) ================= */
 const modal = document.getElementById('agendamentoModal');
 let horarioSelecionado = '';
 
 function abrirModal() {
-    if(modal) modal.style.display = 'block';
+    if(modal) {
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden'; // Trava o scroll do fundo no celular
+    }
     
     if(localStorage.getItem('clienteNome')) {
         document.getElementById('nome').value = localStorage.getItem('clienteNome');
@@ -67,12 +70,21 @@ function abrirModal() {
 }
 
 function fecharModal() {
-    if(modal) modal.style.display = 'none';
+    if(modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto'; // Destrava o scroll do fundo
+    }
 }
 
-window.onclick = function(event) {
-    if (event.target == modal) fecharModal();
-}
+// Fechar clicando fora do modal (Computador)
+window.addEventListener('click', function(event) {
+    if (event.target === modal) fecharModal();
+});
+
+// Fechar tocando fora do modal (Celulares Android e iPhone)
+window.addEventListener('touchstart', function(event) {
+    if (event.target === modal) fecharModal();
+});
 
 /* ================= SELEÇÃO DE HORÁRIO ================= */
 function selecionarHorario(botaoClicado) {
