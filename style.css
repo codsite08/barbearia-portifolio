@@ -1,6 +1,6 @@
 /* ================= RESET & BÁSICO ================= */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; } /* Rolagem suave nativa */
+html { scroll-behavior: smooth; }
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
@@ -24,16 +24,14 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 /* ================= HERO REFORMULADO (100vh + Parallax) ================= */
 .hero { 
     position: relative;
-    min-height: 100vh; /* Ocupa 100% da tela */
+    min-height: 100vh;
     display: flex; 
     align-items: center; 
     justify-content: center;
     text-align: center; 
-    /* Imagem de fundo premium com Parallax */
     background: url('https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=1920&q=80') center center / cover no-repeat fixed;
 }
 
-/* Camada escura por cima da imagem para dar contraste no texto */
 .hero::before {
     content: '';
     position: absolute;
@@ -50,10 +48,9 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 80px; /* Compensa a navbar */
+    padding-top: 80px; 
 }
 
-/* Badge de Localização */
 .hero-badge {
     background: rgba(212, 175, 55, 0.15);
     color: #d4af37;
@@ -67,7 +64,6 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
     margin-bottom: 25px;
 }
 
-/* Novo Título H1 */
 .hero-title { 
     font-size: 3.8rem; 
     font-weight: 800; 
@@ -78,7 +74,6 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 }
 .hero-title span { color: #d4af37; }
 
-/* Subtítulo */
 .hero-subtitle { 
     font-size: 1.15rem; 
     color: #ddd; 
@@ -87,7 +82,6 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
     line-height: 1.6;
 }
 
-/* Botões da Hero */
 .hero-buttons {
     display: flex;
     gap: 15px;
@@ -102,19 +96,16 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 .btn-outline { display: inline-block; padding: 14px 35px; border: 2px solid #fff; color: #fff; font-weight: 700; text-transform: uppercase; border-radius: 50px; text-decoration: none; transition: 0.3s; font-size: 0.95rem; }
 .btn-outline:hover { background: #fff; color: #121212; transform: translateY(-3px); }
 
-/* Confiança (Estrelas) */
 .hero-stats { margin-top: 10px; }
 .hero-stats .estrelas { color: #d4af37; font-size: 1.2rem; letter-spacing: 3px; margin-bottom: 5px; }
 .hero-stats p { font-size: 0.85rem; color: #aaa; font-weight: 500; text-transform: uppercase; letter-spacing: 1px; }
 
-/* Animação do Mouse Scroll */
 .scroll-indicator { position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 2; opacity: 0.7; transition: 0.3s; }
 .scroll-indicator:hover { opacity: 1; }
 .mouse { width: 26px; height: 42px; border: 2px solid #fff; border-radius: 15px; position: relative; }
 .mouse::before { content: ''; width: 4px; height: 8px; background: #d4af37; position: absolute; top: 8px; left: 50%; transform: translateX(-50%); border-radius: 4px; animation: scroll-anim 1.5s infinite; }
 @keyframes scroll-anim { 0% { top: 8px; opacity: 1; } 100% { top: 24px; opacity: 0; } }
 
-/* Animações de Entrada (Hero) */
 .fade-in-up { opacity: 0; transform: translateY(30px); animation: fadeInUpAnim 0.8s ease forwards; }
 .fade-in-down { opacity: 0; transform: translateY(-20px); animation: fadeInDownAnim 0.8s ease forwards; }
 .delay-1 { animation-delay: 0.2s; }
@@ -124,8 +115,7 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 @keyframes fadeInUpAnim { to { opacity: 1; transform: translateY(0); } }
 @keyframes fadeInDownAnim { to { opacity: 1; transform: translateY(0); } }
 
-
-/* ================= SERVIÇOS, EQUIPE E RESTANTE (MANTIDO INTACTO) ================= */
+/* ================= SERVIÇOS, EQUIPE E RESTANTE ================= */
 .anima-scroll { opacity: 0; visibility: hidden; transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
 .anima-scroll.ativo { opacity: 1; visibility: visible; transform: none; }
 .fade-up { transform: translateY(40px); }
@@ -210,11 +200,20 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 .btn-confirmar { width: 100%; background: #d4af37; color: #121212; padding: 16px; border: none; border-radius: 8px; font-size: 1rem; font-weight: 800; text-transform: uppercase; cursor: pointer; transition: 0.3s; margin-top: 10px; }
 .btn-confirmar:hover { background: #c5a028; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
 
-/* Responsividade Hero */
+/* ================= RESPONSIVIDADE (CELULAR) ================= */
 @media(max-width: 768px) {
-    .hero-title { font-size: 2.8rem; }
+    .nav-container { flex-direction: column; gap: 15px; padding: 15px; }
+    .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+    
+    .hero-content { padding-top: 170px; }
+    .hero-title { font-size: 2.5rem; }
     .hero-subtitle { font-size: 1rem; padding: 0 15px; }
+    
     .hero-buttons { flex-direction: column; width: 100%; padding: 0 20px;}
     .btn-agendar, .btn-outline { width: 100%; }
-    .menu-tabela { grid-template-columns: 1fr; padding: 30px; gap: 40px; }
+
+    .scroll-indicator { display: none; }
+    .hero-stats { margin-bottom: 40px; }
+
+    .menu-tabela { grid-template-columns: 1fr; padding: 25px; gap: 40px; }
 }
