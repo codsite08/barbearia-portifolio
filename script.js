@@ -51,14 +51,14 @@ function mostrarToast(mensagem, tipo = 'sucesso') {
     }, 3000);
 }
 
-/* ================= MODAL DE AGENDAMENTO (FIX IPHONE) ================= */
+/* ================= MODAL DE AGENDAMENTO (SOLUÇÃO IPHONE) ================= */
 const modal = document.getElementById('agendamentoModal');
 let horarioSelecionado = '';
 
 function abrirModal() {
     if(modal) {
         modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Trava o scroll do fundo no celular
+        document.body.style.overflow = 'hidden'; // Trava a tela de fundo
     }
     
     if(localStorage.getItem('clienteNome')) {
@@ -72,19 +72,25 @@ function abrirModal() {
 function fecharModal() {
     if(modal) {
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Destrava o scroll do fundo
+        document.body.style.overflow = 'auto'; // Destrava a tela de fundo
     }
 }
 
-// Fechar clicando fora do modal (Computador)
-window.addEventListener('click', function(event) {
-    if (event.target === modal) fecharModal();
-});
+if(modal) {
+    // Fecha ao CLICAR no fundo escuro (PC e Android)
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            fecharModal();
+        }
+    });
 
-// Fechar tocando fora do modal (Celulares Android e iPhone)
-window.addEventListener('touchstart', function(event) {
-    if (event.target === modal) fecharModal();
-});
+    // Fecha ao TOCAR no fundo escuro (A MÁGICA DO IPHONE)
+    modal.addEventListener('touchstart', function(event) {
+        if (event.target === modal) {
+            fecharModal();
+        }
+    }, { passive: true });
+}
 
 /* ================= SELEÇÃO DE HORÁRIO ================= */
 function selecionarHorario(botaoClicado) {
