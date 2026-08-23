@@ -51,15 +51,12 @@ function mostrarToast(mensagem, tipo = 'sucesso') {
     }, 3000);
 }
 
-/* ================= MODAL DE AGENDAMENTO (SOLUÇÃO IPHONE) ================= */
+/* ================= MODAL ================= */
 const modal = document.getElementById('agendamentoModal');
 let horarioSelecionado = '';
 
 function abrirModal() {
-    if(modal) {
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden'; // Trava a tela de fundo
-    }
+    if(modal) modal.style.display = 'block';
     
     if(localStorage.getItem('clienteNome')) {
         document.getElementById('nome').value = localStorage.getItem('clienteNome');
@@ -70,26 +67,11 @@ function abrirModal() {
 }
 
 function fecharModal() {
-    if(modal) {
-        modal.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Destrava a tela de fundo
-    }
+    if(modal) modal.style.display = 'none';
 }
 
-if(modal) {
-    // Fecha ao CLICAR no fundo escuro (PC e Android)
-    modal.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            fecharModal();
-        }
-    });
-
-    // Fecha ao TOCAR no fundo escuro (A MÁGICA DO IPHONE)
-    modal.addEventListener('touchstart', function(event) {
-        if (event.target === modal) {
-            fecharModal();
-        }
-    }, { passive: true });
+window.onclick = function(event) {
+    if (event.target == modal) fecharModal();
 }
 
 /* ================= SELEÇÃO DE HORÁRIO ================= */

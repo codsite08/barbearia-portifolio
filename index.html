@@ -243,11 +243,11 @@
                     </div>
                 </div>
 
-                <!-- Data e Hora -->
+                <!-- Data e Hora (Corrigido para iOS) -->
                 <div class="form-section">
                     <div class="input-group data-group">
-                        <input type="date" id="data" placeholder=" ">
-                        <label for="data" style="display:none;">Data</label>
+                        <input type="text" id="data" placeholder=" " onfocus="(this.type='date')" onblur="(this.value == '' ? this.type='text' : this.type='date')">
+                        <label for="data">Data do Agendamento</label>
                     </div>
                     
                     <div class="grade-horarios-premium" id="gradeHorarios">

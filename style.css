@@ -21,7 +21,7 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 .nav-links a:hover { color: #d4af37; }
 .nav-links a:hover::after { width: 100%; }
 
-/* ================= HERO (100vh + Parallax) ================= */
+/* ================= HERO REFORMULADO (100vh + Parallax) ================= */
 .hero { 
     position: relative;
     min-height: 100vh;
@@ -124,7 +124,7 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 
 .servicos { padding: 100px 0; text-align: center; background: #0a0a0a;}
 .servicos h2 { font-size: 2.5rem; color: #d4af37; margin-bottom: 50px; }
-.menu-tabela { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(8px); border: 1px solid rgba(212, 175, 55, 0.15); border-radius: 16px; padding: 50px; text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+.menu-tabela { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; background: rgba(20, 20, 20, 0.6); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(212, 175, 55, 0.15); border-radius: 16px; padding: 50px; text-align: left; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
 .menu-titulo-categoria { color: #d4af37; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; border-bottom: 1px solid rgba(212,175,55,0.3); padding-bottom: 10px; }
 .mt-40 { margin-top: 40px; }
 .menu-item { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 18px; }
@@ -167,53 +167,14 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 .toast.mostrar { opacity: 1; transform: translateY(0); }
 .toast.erro { border-left-color: #e74c3c; }
 
-/* ================= MODAL PREMIUM (SOLUÇÃO DEFINITIVA IPHONE) ================= */
-.modal { 
-    display: none; 
-    position: fixed; 
-    z-index: 1000; 
-    left: 0; 
-    top: 0; 
-    width: 100%; 
-    height: 100%; 
-    background-color: rgba(0,0,0,0.85); 
-    backdrop-filter: blur(10px); 
-    cursor: pointer; /* Necessário para reconhecer toques no iOS */
-}
-
-.premium-modal { 
-    background-color: #1a1a1a; 
-    width: 95%; 
-    max-width: 500px; 
-    
-    /* Centralização Absoluta na Tela */
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    
-    /* A MÁGICA PARA O IPHONE: Rolar o conteúdo por dentro da caixa */
-    max-height: 85vh; 
-    overflow-y: auto; 
-    -webkit-overflow-scrolling: touch; 
-    
-    padding: 0; 
-    border-radius: 16px; 
-    border: 1px solid rgba(212, 175, 55, 0.2); 
-    animation: slideUpModalCenter 0.4s ease-out forwards; 
-    cursor: default; /* Volta o cursor ao normal dentro da caixinha */
-}
-
-/* Nova animação para não bugar a centralização do modal */
-@keyframes slideUpModalCenter { 
-    from { opacity: 0; top: 60%; } 
-    to { opacity: 1; top: 50%; } 
-}
-
+/* ================= MODAL PREMIUM ================= */
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.premium-modal { background-color: #1a1a1a; margin: 5% auto; padding: 0; border-radius: 16px; width: 95%; max-width: 500px; position: relative; animation: slideUpModal 0.4s; overflow: hidden; border: 1px solid rgba(212, 175, 55, 0.2); }
+@keyframes slideUpModal { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 .modal-header { background: #222; padding: 25px; text-align: center; border-bottom: 1px solid #333; }
 .modal-header h2 { color: #d4af37; font-size: 1.5rem; }
 .modal-header p { color: #888; font-size: 0.9rem; margin-top: 5px; }
-.close-btn { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 28px; cursor: pointer; transition: 0.3s; z-index: 1001;}
+.close-btn { position: absolute; top: 15px; right: 20px; color: #fff; font-size: 28px; cursor: pointer; transition: 0.3s; }
 .close-btn:hover { color: #d4af37; transform: rotate(90deg); }
 
 .form-premium { padding: 30px; }
@@ -229,32 +190,8 @@ body { font-family: 'Montserrat', sans-serif; background: #0a0a0a; color: #f4f4f
 .select-premium option, .select-premium optgroup { background-color: #1a1a1a; color: #fff; }
 .select-arrow { position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #d4af37; pointer-events: none; font-size: 0.8rem; }
 
-/* FIX PARA DATAS E INPUTS NO IPHONE */
-input[type="date"], input[type="time"], .data-group input { 
-    color: #d4af37; 
-    font-weight: bold; 
-    appearance: none; 
-    -webkit-appearance: none; 
-    background-color: #1a1a1a;
-    min-height: 52px;
-    width: 100%;
-    border: 1px solid rgba(212, 175, 55, 0.3);
-    border-radius: 8px;
-    padding: 10px;
-    font-family: inherit;
-    display: flex;
-    align-items: center;
-}
-input[type="date"]::before, input[type="time"]::before, .data-group input::before {
-    content: attr(placeholder);
-    color: #666;
-    margin-right: 10px;
-}
-input[type="date"]:focus::before, input[type="date"]:valid::before, .data-group input:focus::before, .data-group input:valid::before {
-    display: none;
-}
+.data-group input { color: #d4af37; font-weight: bold; }
 ::-webkit-calendar-picker-indicator { filter: invert(0.8) sepia(1) hue-rotate(10deg) saturate(300%); cursor: pointer; }
-
 .grade-horarios-premium { display: grid; grid-template-columns: repeat(auto-fit, minmax(75px, 1fr)); gap: 10px; margin-top: 15px; }
 .btn-horario { background-color: transparent; color: #fff; border: 1px solid #444; padding: 10px; border-radius: 6px; cursor: pointer; font-size: 0.95rem; font-weight: bold; transition: 0.2s; font-family: 'Montserrat', sans-serif; }
 .btn-horario:hover { border-color: #d4af37; color: #d4af37; background: #222; }
@@ -265,14 +202,20 @@ input[type="date"]:focus::before, input[type="date"]:valid::before, .data-group 
 
 /* ================= RESPONSIVIDADE (CELULAR) ================= */
 @media(max-width: 768px) {
+    .hero { background-attachment: scroll; }
+
     .nav-container { flex-direction: column; gap: 15px; padding: 15px; }
     .nav-links { flex-wrap: wrap; justify-content: center; gap: 15px; }
+    
     .hero-content { padding-top: 170px; }
     .hero-title { font-size: 2.5rem; }
     .hero-subtitle { font-size: 1rem; padding: 0 15px; }
+    
     .hero-buttons { flex-direction: column; width: 100%; padding: 0 20px;}
     .btn-agendar, .btn-outline { width: 100%; }
+
     .scroll-indicator { display: none; }
     .hero-stats { margin-bottom: 40px; }
+
     .menu-tabela { grid-template-columns: 1fr; padding: 25px; gap: 40px; }
 }
